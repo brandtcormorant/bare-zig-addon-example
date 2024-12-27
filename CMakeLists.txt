@@ -8,9 +8,15 @@ add_bare_module(bare_addon)
 
 add_library(libbare_zig_example STATIC IMPORTED)
 
-set_target_properties(libbare_zig_example PROPERTIES
-  IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/zig-out/lib/libbare_zig_example.a"
-)
+if(WIN32)
+    set_target_properties(libbare_zig_example PROPERTIES
+        IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/zig-out/lib/bare_zig_example.lib"
+    )
+else()
+    set_target_properties(libbare_zig_example PROPERTIES
+        IMPORTED_LOCATION "${PROJECT_SOURCE_DIR}/zig-out/lib/libbare_zig_example.a"
+    )
+endif()
 
 target_include_directories(${bare_addon}
   PUBLIC
