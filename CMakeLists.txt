@@ -6,6 +6,11 @@ project(bare_addon C)
 
 add_bare_module(bare_addon)
 
+if(target MATCHES "win32")
+  add_compile_options(/MT$<$<CONFIG:Debug>:d>)
+  add_definitions(-DWIN32_LEAN_AND_MEAN)
+endif()
+
 add_library(libbare_zig_example STATIC IMPORTED)
 
 if(WIN32)
