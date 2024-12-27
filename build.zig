@@ -24,8 +24,8 @@ pub fn build(b: *std.Build) void {
 
     c_lib.linkLibC();
     if (target.result.os.tag == .windows) {
-        lib.linkSystemLibrary("ntdll");
-        lib.linkSystemLibrary("kernel32");
+        c_lib.linkSystemLibrary("ntdll");
+        c_lib.linkSystemLibrary("kernel32");
     }
     b.default_step.dependOn(&c_lib.step);
 
