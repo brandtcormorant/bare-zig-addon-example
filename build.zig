@@ -23,10 +23,11 @@ pub fn build(b: *std.Build) void {
     });
 
     // c_lib.linkLibC();
-    // if (target.result.os.tag == .windows) {
+    if (target.result.os.tag == .windows) {
+        c_lib.linkLibC();
     //     c_lib.linkSystemLibrary("ntdll");
     //     c_lib.linkSystemLibrary("kernel32");
-    // }
+    }
     b.installArtifact(c_lib);
     b.default_step.dependOn(&c_lib.step);
     
@@ -36,7 +37,6 @@ pub fn build(b: *std.Build) void {
     // "bare_zig_example.h",
     // );
     // b.getInstallStep().dependOn(&c_header.step);
-
     // const lib = b.addStaticLibrary(.{
     //     .name = "tmp",
     //     // In this case the main source file is merely a path, however, in more
