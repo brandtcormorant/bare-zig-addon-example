@@ -27,8 +27,9 @@ pub fn build(b: *std.Build) void {
         c_lib.linkSystemLibrary("ntdll");
         c_lib.linkSystemLibrary("kernel32");
     }
+    b.installArtifact(c_lib);
     b.default_step.dependOn(&c_lib.step);
-
+    
     // const c_header = b.addInstallFileWithDir(
     // b.path("include/bare_zig_example.h"),
     // .header,
