@@ -17,10 +17,10 @@
   "addon": true,
   "scripts": {
     "fmt_zig": "zig fmt **/*.zig",
-    "fmt_c": "",
+    "fmt_c": "clang-format -i binding.c include/bare_zig_example.h",
     "fmt_js": "prettier . --write",
-    "fmt": "",
-    "test": "prettier . --check && bare test.js"
+    "fmt": "npm run fmt_zig && npm run fmt_c && npm run fmt_js",
+    "test": "bare test.js"
   },
   "repository": {
     "type": "git",

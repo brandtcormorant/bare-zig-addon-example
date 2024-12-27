@@ -34,9 +34,9 @@ jobs:
       - run: npm install
       - run: zig build
       - run: |
-         if [ "$RUNNER_OS" == "Windows" ]; then
-              dir "zig-out\lib" /a
-         fi
+          if [ "$RUNNER_OS" == "Windows" ]; then
+               dir "zig-out\lib" /a
+          fi
       - run: bare-make generate --platform ${{ matrix.platform }} --arch ${{ matrix.arch }} --debug
       - run: bare-make build
       - run: bare-make install
