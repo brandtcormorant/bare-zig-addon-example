@@ -22,11 +22,11 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    c_lib.linkLibC();
-    if (target.result.os.tag == .windows) {
-        c_lib.linkSystemLibrary("ntdll");
-        c_lib.linkSystemLibrary("kernel32");
-    }
+    // c_lib.linkLibC();
+    // if (target.result.os.tag == .windows) {
+    //     c_lib.linkSystemLibrary("ntdll");
+    //     c_lib.linkSystemLibrary("kernel32");
+    // }
     b.installArtifact(c_lib);
     b.default_step.dependOn(&c_lib.step);
     
