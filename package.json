@@ -1,0 +1,41 @@
+{
+  "private": true,
+  "name": "bare-addon",
+  "version": "1.0.0",
+  "description": "Example Bare addon",
+  "exports": {
+    ".": "./index.js",
+    "./package": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "binding.c",
+    "binding.js",
+    "CMakeLists.txt",
+    "prebuilds"
+  ],
+  "addon": true,
+  "scripts": {
+    "fmt_zig": "zig fmt **/*.zig",
+    "fmt_c": "",
+    "fmt_js": "prettier . --write",
+    "fmt": "",
+    "test": "prettier . --check && bare test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/bare-addon.git"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/bare-addon/issues"
+  },
+  "homepage": "https://github.com/holepunchto/bare-addon#readme",
+  "devDependencies": {
+    "brittle": "^3.4.0",
+    "cmake-bare": "^1.1.2",
+    "prettier": "^3.3.3",
+    "prettier-config-standard": "^7.0.0"
+  }
+}
