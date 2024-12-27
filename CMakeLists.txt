@@ -15,5 +15,5 @@ target_sources(
     ${bare_addon}
     PRIVATE
         binding.c
-        "zig-out/lib/libbare_zig_example.a"
+        "zig-out/lib/bare_zig_example"
 )
