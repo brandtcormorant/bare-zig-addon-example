@@ -22,8 +22,11 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    b.installArtifact(c_lib);
     c_lib.linkLibC();
+    if (target.result.os.tag == .windows) {
+        lib.linkSystemLibrary("ntdll");
+        lib.linkSystemLibrary("kernel32");
+    }
     b.default_step.dependOn(&c_lib.step);
 
     // const c_header = b.addInstallFileWithDir(

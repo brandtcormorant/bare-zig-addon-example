@@ -30,9 +30,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+      - run: zig build
+      - run: zig build test
       - run: npm install -g bare-runtime bare-make
       - run: npm install
-      - run: zig build
       - run: bare-make generate --platform ${{ matrix.platform }} --arch ${{ matrix.arch }} --debug
       - run: bare-make build
       - run: bare-make install
