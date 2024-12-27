@@ -13,7 +13,7 @@ bare_zig_example_add(js_env_t *env, js_callback_info_t *info) {
 
   err = js_get_callback_info(env, info, &argc, argv, NULL, NULL);
   assert(err == 0);
-  assert(sizeof(argv) == 2);
+  assert(argc == 2);
 
   double n1;
   err = js_get_value_double(env, argv[0], &n1);
