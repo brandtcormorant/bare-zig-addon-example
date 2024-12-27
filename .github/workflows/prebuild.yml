@@ -53,11 +53,15 @@ jobs:
     name: ${{ matrix.platform }}-${{ matrix.arch }}${{ matrix.tags }}
     steps:
       - uses: actions/checkout@v4
+      - uses: mlugg/setup-zig@v1
+        with:
+          version: 0.13.0
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
       - run: npm install -g bare-runtime bare-make
       - run: npm install
+      - run: zig build
       - run: bare-make generate --platform ${{ matrix.platform }} --arch ${{ matrix.arch }} ${{ matrix.flags }}
       - run: bare-make build
       - run: bare-make install
