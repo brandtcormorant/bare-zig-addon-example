@@ -37,6 +37,7 @@ jobs:
           if [ "$RUNNER_OS" == "Windows" ]; then
                dir "zig-out\lib" /a
           fi
+        shell: bash
       - run: bare-make generate --platform ${{ matrix.platform }} --arch ${{ matrix.arch }} --debug
       - run: bare-make build
       - run: bare-make install
