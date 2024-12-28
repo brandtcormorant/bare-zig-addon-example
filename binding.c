@@ -35,6 +35,44 @@ bare_zig_example_add(js_env_t *env, js_callback_info_t *info) {
   err = js_create_double(env, sum, &result);
   assert(err == 0);
 
+  printf("the result: %f\n", result);
+
+  return result;
+}
+
+static js_value_t *
+bare_zig_example_addc(js_env_t *env, js_callback_info_t *info) {
+  int err;
+
+  size_t argc = 2;
+  js_value_t *argv[2];
+
+  err = js_get_callback_info(env, info, &argc, argv, NULL, NULL);
+  assert(err == 0);
+  assert(argc == 2);
+
+  double n1;
+  err = js_get_value_double(env, argv[0], &n1);
+  assert(err == 0);
+
+  printf("from bare c binding: n1, %f\n", n1);
+
+  double n2;
+  err = js_get_value_double(env, argv[1], &n2);
+  assert(err == 0);
+
+  printf("from bare c binding: n2, %f\n", n2);
+
+  double sum = n1 + n2;
+
+  printf("from bare c binding: sum %f\n", sum);
+
+  js_value_t *result;
+  err = js_create_double(env, sum, &result);
+  assert(err == 0);
+
+  printf("the result: %f\n", result);
+
   return result;
 }
 
@@ -52,6 +90,7 @@ bare_addon_exports(js_env_t *env, js_value_t *exports) {
   }
 
   V("add", bare_zig_example_add)
+  V("addc", bare_zig_example_addc)
 #undef V
 
   return exports;
