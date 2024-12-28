@@ -18,6 +18,10 @@ pub fn build(b: *std.Build) void {
     if (is_windows and (optimize == .Debug or optimize == .ReleaseSafe)) {
         obj.bundle_compiler_rt = true;
     }
+    
+    if (is_windows) {
+        obj.linkSystemLibrary("ntdll");
+    }
 
     const obj_ext = if (is_windows) ".obj" else ".o";
     const obj_path = obj.getEmittedBin();
