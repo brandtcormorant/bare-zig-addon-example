@@ -16,7 +16,7 @@ test('add', (t) => {
 
 test('addc', (t) => {
   try {
-    const sum = addon.add(1, 1)
+    const sum = addon.addc(1, 1)
     console.log('from javascript:', sum)
     t.is(sum, 2, "simplicity across domains isn't")
   } catch (error) {
