@@ -57,16 +57,16 @@ First, build the Zig library:
 zig build
 ```
 
-Next, generate the build system for compiling the bindings, optionally setting the `--debug` flag to enable debug symbols and assertions:
+Next, generate the build system for compiling the bindings, optionally setting the `--verbose flag to enable debug symbols and assertions:
 
 ```console
-bare-make generate [--debug]
+bare-make generate [--verbose]
 ```
 
 This only has to be run once per repository checkout. When updating `bare-make` or your compiler toolchain it might also be necessary to regenerate the build system. To do so, run the command again with the `--no-cache` flag:
 
 ```console
-bare-make generate [--debug] --no-cache
+bare-make generate [--verbose] --no-cache
 ```
 
 With the Zig library built and build system generated, compile the bindings:
@@ -102,8 +102,8 @@ The output should look like:
 ```
 from bare c binding: n1, 1.000000
 from bare c binding: n2, 1.000000
-from zig c api export: n1: 1e0, n2: 1e0
 from zig library: n1: 1e0, n2: 1e0
+from zig c api export: n1: 1e0 + n2 1e0 = 2e0
 from bare c binding: sum 2.000000
 from javascript: 2
 ```
