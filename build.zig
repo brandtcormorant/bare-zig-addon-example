@@ -20,6 +20,7 @@ pub fn build(b: *std.Build) void {
         .root_source_file = b.path("src/c_api.zig"),
         .target = target,
         .optimize = optimize,
+        .pic = true,
     });
 
 const obj_ext = if (target.result.os.tag == .windows) ".obj" else ".o";
