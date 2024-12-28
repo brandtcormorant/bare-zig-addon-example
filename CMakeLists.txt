@@ -11,9 +11,19 @@ target_include_directories(${bare_addon}
         include
 )
 
+add_library(zig_lib OBJECT IMPORTED)
+set_target_properties(zig_lib PROPERTIES
+    IMPORTED_OBJECTS "${CMAKE_CURRENT_SOURCE_DIR}/zig-out/lib/bare_zig_example.o"
+)
+
 target_sources(
     ${bare_addon}
     PRIVATE
         binding.c
-        "zig-out/lib/bare_zig_example"
+)
+
+target_link_libraries(
+    ${bare_addon}
+    PRIVATE
+        $<TARGET_OBJECTS:zig_lib>
 )

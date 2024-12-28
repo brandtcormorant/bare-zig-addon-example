@@ -15,22 +15,40 @@ pub fn build(b: *std.Build) void {
     // set a preferred release mode, allowing the user to decide how to optimize.
     const optimize = b.standardOptimizeOption(.{});
 
-    const c_lib = b.addStaticLibrary(.{
+    const obj = b.addObject(.{
         .name = "bare_zig_example",
         .root_source_file = b.path("src/c_api.zig"),
         .target = target,
         .optimize = optimize,
     });
 
-    // c_lib.linkLibC();
-    if (target.result.os.tag == .windows) {
-        c_lib.linkLibC();
-    //     c_lib.linkSystemLibrary("ntdll");
-    //     c_lib.linkSystemLibrary("kernel32");
-    }
-    b.installArtifact(c_lib);
-    b.default_step.dependOn(&c_lib.step);
-    
+const obj_ext = if (target.result.os.tag == .windows) ".obj" else ".o";
+const obj_path = obj.getEmittedBin();
+const install_obj = b.addInstallFile(
+    obj_path,
+    b.fmt("lib/bare_zig_example{s}", .{obj_ext}),
+        );
+        b.getInstallStep().dependOn(&install_obj.step);
+        // obj_step.dependOn(&install_obj.step);
+
+// const install_object = b.addInstallFile(obj.getOutputSource(), "my_object_path.o");
+// b.getInstallStep().dependOn(&install_object.step);
+    // const c_lib = b.addObject(.{
+    //     .name = "bare_zig_example",
+    //     .root_source_file = b.path("src/c_api.zig"),
+    //     .target = target,
+    //     .optimize = optimize,
+    // });
+
+    // // c_lib.linkLibC();
+    // if (target.result.os.tag == .windows) {
+    //     c_lib.linkLibC();
+    // //     c_lib.linkSystemLibrary("ntdll");
+    // //     c_lib.linkSystemLibrary("kernel32");
+    // }
+    // b.installArtifact(c_lib);
+    // b.default_step.dependOn(&c_lib.step);
+
     // const c_header = b.addInstallFileWithDir(
     // b.path("include/bare_zig_example.h"),
     // .header,
