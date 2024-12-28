@@ -12,8 +12,15 @@ target_include_directories(${bare_addon}
 )
 
 add_library(zig_lib OBJECT IMPORTED)
+
+if(WIN32)
+    set(OBJ_SUFFIX ".obj")
+else()
+    set(OBJ_SUFFIX ".o")
+endif()
+
 set_target_properties(zig_lib PROPERTIES
-    IMPORTED_OBJECTS "${CMAKE_CURRENT_SOURCE_DIR}/zig-out/lib/bare_zig_example.o"
+    IMPORTED_OBJECTS "${CMAKE_CURRENT_SOURCE_DIR}/zig-out/lib/bare_zig_example${OBJ_SUFFIX}"
 )
 
 target_sources(
