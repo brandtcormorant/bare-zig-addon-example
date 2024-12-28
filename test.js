@@ -3,6 +3,6 @@ const addon = require('.')
 
 test('add', (t) => {
   const sum = addon.add(1, 1)
-  console.log('from javascript:' sum)
-  t.is(addon.add(sum, 2, 'math. it works.')
+  console.log('from javascript:', sum)
+  t.is(sum, 2, 'math. it works.')
 })
