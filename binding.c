@@ -27,11 +27,11 @@ bare_zig_example_add(js_env_t *env, js_callback_info_t *info) {
 
   printf("from bare c binding: n2, %f\n", n2);
 
-  js_value_t *result;
   double sum = bare_zig_add(n1, n2);
 
   printf("from bare c binding: sum %f\n", sum);
 
+  js_value_t *result;
   err = js_create_double(env, sum, &result);
   assert(err == 0);
 

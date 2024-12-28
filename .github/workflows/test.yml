@@ -35,6 +35,7 @@ jobs:
       - run: npm install -g bare-runtime bare-make
       - run: npm install
       - run: bare-make generate --platform ${{ matrix.platform }} --arch ${{ matrix.arch }} --debug
-      - run: bare-make build
-      - run: bare-make install
+      - run: bare-make build --verbose
+      - run: bare-make install --verbose
+      - run: bare example.js
       - run: npm test
