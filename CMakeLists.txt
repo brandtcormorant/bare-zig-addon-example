@@ -32,5 +32,6 @@ target_sources(
 target_link_libraries(
     ${bare_addon}
     PRIVATE
+        ntdll
         $<TARGET_OBJECTS:zig_lib>
 )
