@@ -15,6 +15,13 @@ add_library(zig_lib OBJECT IMPORTED)
 
 if(WIN32)
     set(OBJ_SUFFIX ".obj")
+    
+    target_link_libraries(
+    ${bare_addon}
+    PRIVATE
+        ntdll
+)
+
 else()
     set(OBJ_SUFFIX ".o")
 endif()
@@ -32,6 +39,5 @@ target_sources(
 target_link_libraries(
     ${bare_addon}
     PRIVATE
-        ntdll
         $<TARGET_OBJECTS:zig_lib>
 )
