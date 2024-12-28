@@ -43,7 +43,7 @@ bare_zig_example_add(js_env_t *env, js_callback_info_t *info) {
   err = js_create_double(env, sum, &result);
   printf("js_create_double error code: %d\n", err);
   assert(err == 0);
-  
+
   double sumdoubletrouble;
   err = js_get_value_double(env, result, &sumdoubletrouble);
   assert(err == 0);
