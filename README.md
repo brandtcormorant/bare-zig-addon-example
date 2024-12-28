@@ -17,13 +17,15 @@ There's one annoying, hopefully temporary drawback:
 
 Aside from that, if you've dealt multi-language projects before you'll recognize the other challenges:
 
-- All the usual drawbacks of bridging between languages. Types. All the different types. Plus JavaScript.
-- Complex build chain: You need to coordinate three different build systems (Zig, CMake, Bare). This means more points of potential failure and more complex debugging when builds break.
-- Error handling across boundaries can be tricky: Error types and exception models differ between Zig, C, and JavaScript.
-- Debug complexity: When things go wrong, you need to debug across language boundaries, which can make it harder to track down issues.
-- Potential performance overhead: While minimal, there is some overhead in marshaling data between the different languages.
+- You need to coordinate two different build systems (Zig & CMake).
+- Types and error handling differ between Zig, C, and JavaScript.
+- When things go wrong, you need to debug across language boundaries, which can make it harder to track down issues.
 
-If you'd rather just use C that is a good and lovely option. But if you're working with existing Zig projects or building new ones and want to have JavaScript integration this is a really interesting option.
+## Zig for the future
+
+If you'd rather just use C that is a good and lovely option.
+
+But if you're working with existing Zig projects or building new ones and want to have JavaScript integration this is a really interesting option.
 
 Using Zig's build system together with Bare's dev tools like [bare-make](https://github.com/holepunchto/bare-make) (a wrapper around cmake with Bare-specific tooling) is already really effective.
 
